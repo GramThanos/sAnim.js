@@ -3,26 +3,39 @@ Simple Javascript Animations
 
 Just a small javascript library for animations that I wrote some years ago.
 
-### Example Usage
+___
+
+
+### Fast set up
+
+Add the sAnim code on `<head>`
 
 ```html
-<!-- My Element to animate -->
-<div id="box" style="position: absolute; top: 0; left: 0; width: 10px; height: 10px; background: black;"></div>
+<script type="text/javascript" src="sAnim.js"></script>
+```
 
+You are now ready to fire your animations!
+
+```html
 <script type="text/javascript">
-	// Get Element
-	var box = document.getElementById('box');
-
-	// Get current position
-	var top = parseInt(box.style.top, 10);
-	var left = parseInt(box.style.left, 10);
-
-	// Animate
-	var anim = new sAnim({from : 0, to : 300}, function(v) {
-		box.style.top = (top + Math.round(v)) + 'px';
-		box.style.left = (left + Math.round(v)) + 'px';
-	});
-	// Fire!
-	anim.start();
+	new sAnim({from : 0, to : 100}, function(value) {
+		// Handle animation step
+		console.log(value);
+	}).start();
 </script>
 ```
+
+___
+
+
+### License
+
+This project is under [The MIT license](https://opensource.org/licenses/MIT).
+I do although appreciate attribute.
+
+Copyright (c) 2018 Grammatopoulos Athanasios-Vasileios
+
+___
+
+[![GramThanos](https://avatars2.githubusercontent.com/u/14858959?s=42&v=4)](https://github.com/GramThanos)
+[![DinoDevs](https://avatars1.githubusercontent.com/u/17518066?s=42&v=4)](https://github.com/DinoDevs)
