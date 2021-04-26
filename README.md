@@ -1,6 +1,7 @@
 # sAnim.js
-## Simple Javascript Animations
+Simple Javascript Animations
 
+Just a small javascript library for animations that I wrote some years ago.
 
 ### Example Usage
 
