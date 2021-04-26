@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>sAnim.js - Simple Animations</title>
+	<meta name="description" content="sAnim.js">
+	<meta name="author" content="GramThanos">
+
+	<!--[if lt IE 9]>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+	<![endif]-->
+	
+	<style>
+		body {
+			font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+			font-size: 14px;
+			line-height: 1.5;
+			color: #24292e;
+			background-color: #fff;
+		}
+	
+		.wrapper-title {
+			z-index: 2;
+			position: absolute;
+			top: 10%;
+			left: 50%;
+			width: 600px;
+			margin-left: -300px;
+			text-align: center;
+		}
+		
+		.wrapper-title h1,
+		.wrapper-title h2 {
+			margin: 0px;
+			padding: 0px;
+			font-weight: normal;
+		}
+	
+		.wrapper-box {
+			z-index: 1;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 20px;
+			height: 20px;
+			margin-top: -10px;
+			margin-left: -10px;
+		}
+		
+		#box {
+			width: 18px;
+			height: 18px;
+			background: #03a9f4;
+			border-radius: 50%;
+			border: 1px solid #24292e;
+		}
+		
+		.wrapper-buttons {
+			z-index: 2;
+			position: absolute;
+			bottom: 10%;
+			left: 50%;
+			width: 600px;
+			margin-left: -300px;
+			text-align: center;
+		}
+		
+		button {
+			border: 1px solid #24292e;
+			border-radius: 5px;
+			width: 40px;
+			height: 40px;
+			padding: 5px 10px;
+			cursor: pointer;
+			background: #fafafa;
+			font-size: 18px;
+		}
+		button:hover {
+			background: #f0f0f0;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper-title">
+		<h1>sAnim.js</h1>
+		<h2>Simple Javascript Animations</h2>
+	</div>
+	<div class="wrapper-box">
+		<div id="box"></div>
+	</div>
+	<div class="wrapper-buttons">
+		<button onclick="slide_left();">←</button>
+		<button onclick="slide_up();">↑</button>
+		<button onclick="slide_down();">↓</button>
+		<button onclick="slide_right();">→</button>
+	</div>
+
+	<script src="sAnim.js"></script>
+	<script>
+		var box = document.getElementById('box');
+		box.style.marginLeft = "0px";
+		box.style.marginTop = "0px";
+		
+		var anim_x = false;
+		var anim_y = false;
+		var slide_length = 100;
+		
+		// Slide from Right to Left
+		function slide_left() {
+			if (anim_x) anim_x.stop();
+			
+			var x = parseInt(box.style.marginLeft, 10);
+			
+			anim_x = new sAnim({from : x, to : x - slide_length}, function(state) {
+				box.style.marginLeft = Math.round(state) + 'px';
+			}).start();
+		}
+		
+		// Slide from Left to Right
+		function slide_right() {
+			if (anim_x) anim_x.stop();
+			
+			var x = parseInt(box.style.marginLeft, 10);
+			
+			anim_x = new sAnim({from : x, to : x + slide_length}, function(state) {
+				box.style.marginLeft = Math.round(state) + 'px';
+			}).start();
+		}
+		
+		// Slide from Down to Up
+		function slide_up() {
+			if (anim_y) anim_y.stop();
+			
+			var y = parseInt(box.style.marginTop, 10);
+			
+			anim_y = new sAnim({from : y, to : y - slide_length}, function(state) {
+				box.style.marginTop = Math.round(state) + 'px';
+			}).start();
+		}
+		
+		// Slide from Up to Down
+		function slide_down() {
+			if (anim_y) anim_y.stop();
+			
+			var y = parseInt(box.style.marginTop, 10);
+			
+			anim_y = new sAnim({from : y, to : y + slide_length}, function(state) {
+				box.style.marginTop = Math.round(state) + 'px';
+			}).start();
+		}
+		
+		// Listen keyboard arrows
+		window.addEventListener('keydown', function(e) {
+			e = e || window.event;
+			
+			switch(e.keyCode) {
+				case 38:
+					slide_up();
+					break;
+				case 40:
+					slide_down();
+					break;
+				case 37:
+					slide_left();
+					break;
+				case 39:
+					slide_right();
+					break;
+			}
+		}, false);
+	</script>
+</body>
+</html>

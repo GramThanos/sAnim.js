@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>sAnim.js - Simple Animations</title>
+	<meta name="description" content="sAnim.js">
+	<meta name="author" content="GramThanos">
+
+	<!--[if lt IE 9]>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+	<![endif]-->
+	
+	<style>
+	</style>
+</head>
+<body>
+	<!-- My Element to animate -->
+	<div id="box" style="position: absolute; top: 0; left: 0; width: 10px; height: 10px; background: black;"></div>
+
+	<script src="sAnim.js"></script>
+
+	<script type="text/javascript">
+		// Get Element
+		var box = document.getElementById('box');
+
+		// Get current position
+		var top = parseInt(box.style.top, 10);
+		var left = parseInt(box.style.left, 10);
+
+		// Animate
+		var anim = new sAnim({from : 0, to : 300}, function(v) {
+			box.style.top = (top + Math.round(v)) + 'px';
+			box.style.left = (left + Math.round(v)) + 'px';
+		});
+		// Fire!
+		anim.start();
+	</script>
+</body>
+</html>
