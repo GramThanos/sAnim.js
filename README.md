@@ -1,0 +1,2 @@
+# sAnim.js
+Simple Animations
