@@ -1,7 +1,10 @@
-# sAnim.js
-Simple Javascript Animations
+[![latest release](https://img.shields.io/badge/latest%20release-v1.0.1-green.svg?style=flat-square)](https://github.com/GramThanos/sAnim.js/releases/latest)
 
-Just a small javascript library for animations that I wrote some years ago.
+# sAnim
+Simple javascript animations
+
+ [sAnim.js v1.0.1 (~1kB gzipped)](https://raw.githubusercontent.com/GramThanos/sAnim.js/master/source/sAnim.js) - [sAnim.min.js v1.0.1 (~0.5kB gzipped)](https://raw.githubusercontent.com/GramThanos/sAnim.js/master/
+
 
 ___
 
@@ -28,12 +31,23 @@ You are now ready to fire your animations!
 ___
 
 
+### Contact me
+
+Contact me to leave me your feedback or to express your thoughts.
+
+[Open an issue](https://github.com/GramThanos/sAnim.js/issues)
+
+
+
+___
+
+
 ### License
 
 This project is under [The MIT license](https://opensource.org/licenses/MIT).
 I do although appreciate attribute.
 
-Copyright (c) 2018 Grammatopoulos Athanasios-Vasileios
+Copyright (c) 2021 Grammatopoulos Athanasios-Vasileios
 
 ___
 

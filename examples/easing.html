@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>sAnim</title>
+		<meta name="description" content="sAnim example">
+		<meta name="author" content="GramThanos">
+
+		<!-- sAnim -->
+		<script type="text/javascript" src="../source/sAnim.js"></script>
+		<!-- easing-js from https://github.com/danro/easing-js -->
+		<script type="text/javascript" src="easing.js"></script>
+
+		<style type="text/css">
+			#wrapper {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -50px 0px 0px -50px;
+			}
+			#box {
+				background: #173442;
+				width: 100px;
+				height: 100px;
+				border-radius: 5px;
+			}
+			#ctrl {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: 120px;
+				width: 200px;
+				margin-left: -100px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="wrapper">
+			<!-- Simple animated box -->
+			<div id="box"></div>
+		</div>
+
+		<div id="ctrl">
+			<select id="ctrl-ease">
+				<option value="swingFromTo">swingFromTo</option>
+				<option value="swingFrom">swingFrom</option>
+				<option value="swingTo">swingTo</option>
+				<option value="easeFromTo">easeFromTo</option>
+				<option value="easeFrom">easeFrom</option>
+				<option value="easeTo">easeTo</option>
+				<option value="easeInQuad">easeInQuad</option>
+				<option value="easeOutQuad">easeOutQuad</option>
+				<option value="easeInOutQuad">easeInOutQuad</option>
+				<option value="easeInCubic">easeInCubic</option>
+				<option value="easeOutCubic">easeOutCubic</option>
+				<option value="easeInOutCubic">easeInOutCubic</option>
+				<option value="easeInQuart">easeInQuart</option>
+				<option value="easeOutQuart">easeOutQuart</option>
+				<option value="easeInOutQuart">easeInOutQuart</option>
+				<option value="easeInQuint">easeInQuint</option>
+				<option value="easeOutQuint">easeOutQuint</option>
+				<option value="easeInOutQuint">easeInOutQuint</option>
+				<option value="easeInSine">easeInSine</option>
+				<option value="easeOutSine">easeOutSine</option>
+				<option value="easeInOutSine">easeInOutSine</option>
+				<option value="easeInExpo">easeInExpo</option>
+				<option value="easeOutExpo">easeOutExpo</option>
+				<option value="easeInOutExpo">easeInOutExpo</option>
+				<option value="easeInCirc">easeInCirc</option>
+				<option value="easeOutCirc">easeOutCirc</option>
+				<option value="easeInOutCirc">easeInOutCirc</option>
+				<option value="easeOutBounce" selected="selected">easeOutBounce</option>
+				<option value="easeInBack">easeInBack</option>
+				<option value="easeOutBack">easeOutBack</option>
+				<option value="easeInOutBack">easeInOutBack</option>
+				<option value="bounce">bounce</option>
+				<option value="bouncePast">bouncePast</option>
+				<option value="elastic">elastic</option>
+			</select>
+			<button id="ctrl-play">Play</button>
+		</div>
+
+		<!-- Animation code -->
+		<script type="text/javascript">
+			// Get html elements
+			var box = document.getElementById('box');
+			var ease = document.getElementById('ctrl-ease');
+			var btn = document.getElementById('ctrl-play');
+			
+			// Anim variable
+			var animation = null;
+
+			// Play animation
+			function play(effect){
+				// Spot previous animation
+				if (animation) animation.stop();
+
+				// Create animation
+				animation = new sAnim({
+					from : -100,	// Start value
+					to : 0,			// End value
+					time: 1000		// Animation time
+				}, sAnim.easing(effect, function(value, from, to) {
+					// Display value
+					box.style.marginTop = Math.round(value) + 'px';
+				}));
+
+				// Start animation
+				animation.start();
+			}
+
+			// On play click or effect change
+			btn.addEventListener('click', function() {
+				play(ease.value);
+			}, false);
+			ease.addEventListener('change', function() {
+				play(ease.value);
+			}, false);
+
+			// Run animation on page load
+			window.addEventListener('load', function() {
+				play('easeOutBounce');
+			}, false);
+		</script>
+		
+	</body>
+</html>

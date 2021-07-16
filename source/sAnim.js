@@ -1,36 +1,15 @@
 /*
- * sAnim v1.0.0
- * Simple Animations
- *
+ * sAnim v1.0.1
+ * https://github.com/GramThanos/sAnim
  *
  * MIT License
- *
- * Copyright (c) 2018 Grammatopoulos Athanasios-Vasileios
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
+ * Copyright (c) 2019 Grammatopoulos Athanasios-Vasileios
  */
 
 var sAnim = (function(){
 
-    // Constructor
-    function SAnim(optns, step, end){
+	// Constructor
+	function SAnim(optns, step, end) {
 		optns = optns || {};
 		
 		// Save info
@@ -54,10 +33,10 @@ var sAnim = (function(){
 		
 		// Animation is stopped
 		this.stop();
-    };
+    }
 
     // Version
-    SAnim.version = "v1.0.0";
+    SAnim.version = 'v1.0.1';
 	
 	// Start the anim
 	SAnim.prototype.start = function() {
@@ -124,6 +103,26 @@ var sAnim = (function(){
 		return this;
 	}
 
-    // Return
-    return SAnim;
+	// Apply easing function
+	SAnim.easing = function (name, step) {
+		var easing = null;
+		if (typeof name === 'function') {
+			easing = name;
+		}
+		else if (typeof name === 'string' && typeof window.easing !== 'undefined' && window.easing.hasOwnProperty(name)) {
+			easing = window.easing[name];
+		}
+		else {
+			throw new Error('sAnim: Ease function was not found.');
+		}
+		return function(value, from, to, time_frame) {
+			step(
+				from + easing((value - from) / (to - from)) * (to - from),
+				from, to, time_frame
+			);
+		}
+	}
+
+	// Return
+	return SAnim;
 })();

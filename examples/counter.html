@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>sAnim</title>
+		<meta name="description" content="sAnim example">
+		<meta name="author" content="GramThanos">
+
+		<!-- sAnim -->
+		<script type="text/javascript" src="../source/sAnim.js"></script>
+	</head>
+	<body>
+
+		<!-- Simple animated counter -->
+		Simple animated 0 - 100 counter<br>
+		<span id="counter"></span>
+
+		<!-- Animation code -->
+		<script type="text/javascript">
+			// Get html element
+			var counter = document.getElementById('counter');
+
+			// Create animation
+			var animation = new sAnim({
+				from : 0,		// Start value
+				to : 100,		// End value
+				time: 2*1000	// Animation time
+			}, function(value) {
+				// Display value
+				counter.textContent = Math.round(value);
+			});
+
+			// Start animation
+			animation.start();
+		</script>
+		
+	</body>
+</html>
